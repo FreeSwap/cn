@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>FreeSwap协议 - FreeSwap去中心化交易所</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">FreeSwap去中心化交易所</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">简介</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">FreeSwap协议</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">文档下载 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../FreeSwap_cn.pdf" class="dropdown-item">白皮书</a>
+</li>
+                                    
+<li>
+    <a href="../FreeSwap_en.pdf" class="dropdown-item">White paper</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">其他 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="https://ldru.github.io/FortSwap/" class="dropdown-item">English</a>
+</li>
+                                    
+<li>
+    <a href="../contact/" class="dropdown-item">联系方式</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../FreeSwap_cn.pdf" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#freeswap" class="nav-link"> FreeSwap 免费交易协议 </a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">摘要</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#0" class="nav-link">0 引言</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1" class="nav-link">1 交易对基础</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#2-freeswap" class="nav-link">2. FreeSwap 交易协议</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#3-freeswap" class="nav-link">3 FreeSwap 套利分析</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#4-freeswap" class="nav-link">4. FreeSwap 协议总结</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">参考文献</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="freeswap"><center> FreeSwap 免费交易协议 </center></h1>
+<div class="toc">
+<ul>
+<li><a href="#freeswap"> FreeSwap 免费交易协议 </a><ul>
+<li><a href="#_1">摘要</a></li>
+<li><a href="#0">0 引言</a></li>
+<li><a href="#1">1 交易对基础</a><ul>
+<li><a href="#11">1.1 交易对定义</a></li>
+<li><a href="#12">1.2 恒定资产乘积</a></li>
+<li><a href="#13">1.3 交易套利</a></li>
+<li><a href="#14">1.4 无常损失</a></li>
+</ul>
+</li>
+<li><a href="#2-freeswap">2. FreeSwap 交易协议</a><ul>
+<li><a href="#21-freetswap">2.1 FreetSwap 交易协议目标</a></li>
+<li><a href="#22-freeswap">2.2 FreeSwap 交易对设置</a></li>
+<li><a href="#23-freetswap">2.3 FreetSwap 兑换交易</a></li>
+<li><a href="#24-freeswap">2.4 FreeSwap 交易池套利</a></li>
+</ul>
+</li>
+<li><a href="#3-freeswap">3 FreeSwap 套利分析</a><ul>
+<li><a href="#31-freeswap">3.1 FreeSwap 套利分析</a></li>
+<li><a href="#32-freeswap">3.2 FreeSwap 套利收益率分析</a></li>
+<li><a href="#33">3.3 等效交易费率</a></li>
+<li><a href="#34">3.4 不适用交易类型</a></li>
+</ul>
+</li>
+<li><a href="#4-freeswap">4. FreeSwap 协议总结</a></li>
+<li><a href="#_2">参考文献</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="_1">摘要</h2>
+<p>FreeSwap 交易协议是一种不收取交易手续费的去中心化交易协议。FreeSwap 交易协议以 “恒定资产乘积” 公式为基础，为每对数字资产创建两个单向交易的子资金池，随着交易发生，当两个子资金池内的资产价格偏差达到一定幅度时，子资金池之间相互进行套利操作。套利操作可以恢复子资金池资产价格的一致性，同时为流动性资金提供者提供收益。本文主要描述 FreeSwap 交易协议的套利机制及其基本规则，阐述套利机制的双赢特性，并通过理论模型对套利机制的收益幅度进行量化评估。计算表明，在子资金池价差为 1 % 的情况下进行套利，FreeSwap 交易协议可以实现相当于 2.488 ‰ 交易手续费的套利收益。</p>
+<h2 id="0">0 引言</h2>
+<p>2020年，&rdquo;恒定资产乘积&rdquo; 公式 <script type="math/tex">^{[1]}</script> 应用到去中心化交易所取得了巨大成功。&rdquo;恒定资产乘积&rdquo; 公式异常简洁，但却能够解决链上资产的自动化定价问题，UniSwap <script type="math/tex">^{[2]\ [3]}</script> 等基于 &ldquo;恒定资产乘积&rdquo; 公式的去中心化交易所可以提供非常好的流动性和交易深度，吸引了大量的加密货币交易用户。</p>
+<p>但是去中心化交易除了需要支付区块链网络的Gas费外，还需要支付一定比例的交易手续费，相对于中心化交易所，用户需要支付较高的交易费用。FreeSwap 交易协议目的是设计一种完全免费的不需要支付交易手续费的交易协议，通过降低交易手续费，吸引费更多的去中心化交易用户。</p>
+<p>为解决 &ldquo;抢跑攻击&rdquo; 问题，Vitalik Buterin 曾经提出设置两个单向交易池的建议 <script type="math/tex">^{[4]}</script>，FreeSwap 协议具体细化了这一建议。由于两个交易池只能进行单向的资产兑换，这必然会导致交易池之间资产价格产生反向偏离，这种反向偏离既可以解决矿工的 &ldquo;抢跑攻击” 问题，又可以给流动性提供者提供额外的盈利途径。FreeSwap 交易协议充分利用两个子资金池资产价格反向偏离产生的套利机会，给流动性资金提供者提供收益，进而为去中心化交易用户提供免费交易。</p>
+<h2 id="1">1 交易对基础</h2>
+<h3 id="11">1.1 交易对定义</h3>
+<p>交易对包括两种不同的可以相互交换的数字资产，这里分别用 <script type="math/tex">Token A</script> 和 <script type="math/tex">Token B</script> 表示。在创建交易对时，用户需要按照实际市场价格存入相应数量的价值相等的 <script type="math/tex">Token A</script> 和 <script type="math/tex">Token B</script> 。如果创建交易对的价格偏离市场价格，交易对创建者会被套利，从而蒙受损失。</p>
+<p>假设 <script type="math/tex">P_{A}</script> 、<script type="math/tex">P_{B}</script> 分别为 <script type="math/tex">Token A</script> 、<script type="math/tex">Token B</script> 以任一法币计价的价格，定义 <script type="math/tex">P_{A\rightarrow B}</script> 为 <script type="math/tex">Token A</script> 兑换为 <script type="math/tex">Token B</script> 的价格，即与 <script type="math/tex">1\ Token A</script> 等值的 <script type="math/tex">Token B</script> 的数量：</p>
+<p>
+<script type="math/tex; mode=display">P_{A \rightarrow B} = \frac{P_A}{P_B} \tag{1.1.1}</script>
+</p>
+<p>同样，定义 <script type="math/tex">P_{B \rightarrow A}</script> ，即 <script type="math/tex">Token B</script> 兑换为 <script type="math/tex">Token A</script> 的价格：</p>
+<p>
+<script type="math/tex; mode=display">P_{B \rightarrow A} = \frac{P_B}{P_A} \tag{1.1.2}</script>
+</p>
+<p>理论上，不考虑市场交易成本，则存在下列关系：</p>
+<p>
+<script type="math/tex; mode=display">P_{A \rightarrow B} * P_{B \rightarrow A} = 1 \tag{1.1.3}</script>
+</p>
+<p>假设 <script type="math/tex">N_A</script> 、<script type="math/tex">N_B</script> 分别为交易对内部任一时刻两种数字资产 <script type="math/tex">Token A</script>、 <script type="math/tex">Token B</script> 的数量，该交易对可表示为：</p>
+<p>
+<script type="math/tex; mode=display">(N_A \ | \ N_B) \tag{1.1.4}</script>
+</p>
+<p>交易对总是认为两种内部资产具有相等的市场价值，即存在下列相互等价的关系：</p>
+<p>
+<script type="math/tex; mode=display">N_A * P_{A} = N_B * P_{B} \tag{1.1.5}</script>
+</p>
+<p>
+<script type="math/tex; mode=display">N_A = N_B * P_{B \rightarrow A} \tag{1.1.6}</script>
+</p>
+<p>
+<script type="math/tex; mode=display">N_B = N_A * P_{A \rightarrow B} \tag{1.1.7}</script>
+</p>
+<p>
+<script type="math/tex; mode=display">P_{A \rightarrow B} = \frac{N_B}{N_A} \tag{1.1.8}</script>
+</p>
+<p>
+<script type="math/tex; mode=display">P_{B \rightarrow A} = \frac{N_A}{N_B} \tag{1.1.9}</script>
+</p>
+<h3 id="12">1.2 恒定资产乘积</h3>
+<p>在交易对中进行资产兑换时，由于无法取得外部 <script type="math/tex">Token A</script> 和 <script type="math/tex">Token B</script> 的市场价格，需要设计一个兑换机制，确定 <script type="math/tex">Token A</script> 和 <script type="math/tex">Token B</script> 兑换比例关系。自动做市商 (Automated Market Maker，AMM) 类型的去中心化交易所 (DEX)，采用 “资产恒定乘积” 公式 <script type="math/tex">^{[1]}</script> 确定兑换前后交易对中资产数量的变化，也即用户兑入、兑出资产的数量；</p>
+<p>对于交易对 <script type="math/tex">(N_A\ | \ N_B )</script> ，&rdquo;恒定资产乘积&rdquo; 公式可表示为：</p>
+<p>
+<script type="math/tex; mode=display">N_A * N_B=K \tag{1.2.1}</script>
+</p>
+<p>其中，<script type="math/tex">K</script> 值只在用户向交易对中存入流动性资产，或者从交易对中取出流动性资产时才会发生变化，在用户兑换资产的交易过程中保持恒定不变。</p>
+<p>假设有一笔兑换交易，用户用 <script type="math/tex">Token A</script> 兑换 <script type="math/tex">Token B</script> ，兑入的 <script type="math/tex">Token A</script> 的数量为 <script type="math/tex">\mathrm{\Delta}_{A}</script> ，兑出的 <script type="math/tex">Token B</script> 的数量为 <script type="math/tex">\mathrm{\Delta}_{B}</script> 。（为表述方便，这里的 “兑入”、“兑出” 是相对交易对而言的，如果相对用户而言，“兑入”、“兑出” 关系则完全相反）。依据 &ldquo;恒定资产乘积&rdquo; 公式，有：</p>
+<p>
+<script type="math/tex; mode=display"> ( N_A + \mathrm{\Delta}_A ) * (N_B - \mathrm{\Delta}_B ) = ( N_A * N_B )  \tag{1.2.2}</script>
+</p>
+<p>
+<script type="math/tex; mode=display">\mathrm{\Delta}_B = \frac{\mathrm{\Delta}_A}{N_A + \mathrm{\Delta}_A} * N_B \tag{1.2.3}</script>
+</p>
+<p>可以看到，兑换交易发生前、兑换交易发生后、以及兑换交易实际发生的价格是3个不同的价格。</p>
+<p>兑换交易发生前，交易对内的资产价格（表示为 <script type="math/tex">P_{A \rightarrow B}^{0}</script>）为：</p>
+<p>
+<script type="math/tex; mode=display">P_{A \rightarrow B}^{0} = \frac{N_B}{N_A} \tag{1.2.4}</script>
+</p>
+<p>兑换交易实际发生的资产价格（表示为 <script type="math/tex">P_{A \rightarrow B}^{1}</script>）为：</p>
+<p>
+<script type="math/tex; mode=display">P_{A \rightarrow B}^{1} = \frac{\mathrm{\Delta}_B}{\mathrm{\Delta}_A} = \frac{N_B}{N_A + \mathrm{\Delta}_A} \tag{1.2.5}</script>
+</p>
+<p>兑换交易发生后，交易对内的资产价格（表示为 <script type="math/tex">P_{A \rightarrow B}^{2}</script>）为：</p>
+<p>
+<script type="math/tex; mode=display">P_{A \rightarrow B}^{2} = \frac{N_B - \mathrm{\Delta}_B}{N_A +  \mathrm{\Delta}_A} \tag{1.2.6}</script>
+</p>
+<p>显而易见：</p>
+<p>
+<script type="math/tex; mode=display">P_{A \rightarrow B}^{0} > P_{A \rightarrow B}^{1} > P_{A \rightarrow B}^{2} \tag{1.2.7}</script>
+</p>
+<p>即兑入资产 <script type="math/tex">Token A</script> 相对于兑出资产 <script type="math/tex">Token B</script> 的价格，在兑换交易发生后，发生了滑动。兑换交易发生前交易对内 <script type="math/tex">Token A</script> 的价格，高于用户兑换交易实际发生的价格，而用户兑换交易实际发生的价格，又高于兑换完成后交易对内 <script type="math/tex">Token A</script> 的价格。即兑换交易完成后，交易对内 <script type="math/tex">Token A</script> 相对于 <script type="math/tex">Token B</script> 的价格发生了下跌，相应地，<script type="math/tex">Token B</script> 的相对价格产生了上涨。</p>
+<h3 id="13">1.3 交易套利</h3>
+<p>兑换交易是在交易区块确认的瞬间发生的，兑换交易发生前后，<script type="math/tex">Token A</script> 和 <script type="math/tex">Token B</script> 的外部市场价格不会发生变化。由于 &ldquo;恒定资产乘积&rdquo; 约束，导致交易价格产生滑动，会使用户蒙受一定的兑换损失，以 <script type="math/tex">Token B</script> 计价的兑换损失计算如下：</p>
+<p>
+<script type="math/tex; mode=display">\begin{aligned} Lost_{A \rightarrow B} &= \mathrm{\Delta}_A * \frac{N_B}{N_A} - \mathrm{\Delta}_A * \frac{N_B}{N_A + \mathrm{\Delta}_A} \\[3mm]
+&= \mathrm{\Delta}_A * \frac{N_B}{N_A} \Large{/} \normalsize ( 1 + \frac{N_A} {\mathrm{\Delta}_{A}} ) \end{aligned} \tag{1.3.1}</script>
+</p>
+<p>可见用户兑入Token A的比列 <script type="math/tex">(\mathrm{\Delta}_{A} / N_A)</script>  越大，蒙受的兑换损失也会越大。</p>
+<p>该交易完成后，如果另一用户进行逆向兑换，不考虑交易费用，根据 &ldquo;恒定资产乘积&rdquo; 公式，他只要兑入数量为 <script type="math/tex">\mathrm{\Delta}_B</script> 的 <script type="math/tex">Token B</script> ，即可获得 <script type="math/tex">\mathrm{\Delta}_A</script> 的 <script type="math/tex">Token A</script> ，交易完成后，交易对内资产价格恢复为初始价格 <script type="math/tex">P_{A \rightarrow B} = N_B/N_A</script> 。即该用户以较高的 <script type="math/tex">Token B</script> 价格对较低的 <script type="math/tex">Token A</script> 价格完成交易，实现了对前一用户兑换损失的套利，套利金额等于前一用户的兑换损失。</p>
+<h3 id="14">1.4 无常损失</h3>
+<p>流动性资金提供者在提供流动性时，需要向交易对中注入两种总价值相等的相应数量的代币，随着交易的发生，用户权益对应的代币数量会发生变动。假设用户初始投入 <script type="math/tex">Token A</script> 的数量为 <script type="math/tex">X_{A}</script> ，当用户退出流动性时，如果 <script type="math/tex">Token A</script> 的市场价格相对于 <script type="math/tex">Token B</script> 发生了上涨，则用户得到的 <script type="math/tex">Token A</script> 的数量 <script type="math/tex">{X'}_{A}</script> 可能会小于 <script type="math/tex">X_{A}</script>，如果提供流动性获得的交易手续费等收入不足以弥补 <script type="math/tex">Token A</script> 数量减少造成的损失，则流动性提供者相对于一直持有 <script type="math/tex">Token A</script> 、<script type="math/tex">Token B</script> 而不是提供流动性服务，则会蒙受损失。实际上，无论 <script type="math/tex">Token A</script>、<script type="math/tex">Token B</script>的价格上涨还是下跌，只要他们的价格比相对于用户提供流动性时发生了偏离，用户都会蒙受损失。该损失大小完全由市场价格变化决定，用户无法控制，也被称为 &ldquo;无常损失&rdquo; <script type="math/tex">^{[5]}</script>。</p>
+<p>下面以 <script type="math/tex">Token B</script> 作为价格基准，在不考虑交易手续费收入的情况下，对无常损失进行定量分析。假设初期用户投入交易对的代币数量为 <script type="math/tex">(X_{A}|Y_{B})</script> ，<script type="math/tex">Token A</script> 相对于 <script type="math/tex">Token B</script> 的价格为 <script type="math/tex">P_1</script>，期末用户撤出交易对的代币数量为 <script type="math/tex">(X'_A | Y'_B)</script>，<script type="math/tex">Token A</script> 相对于 <script type="math/tex">Token B</script> 的价格为 <script type="math/tex">P_2</script>，如果用户没有为交易池提供流动性，而是简单持有 <script type="math/tex">( X_{A}|Y_{B} )</script> 代币，期末价值为：</p>
+<p>
+<script type="math/tex; mode=display">V_1=X_A*P_2+Y_B \tag{1.4.1}</script>
+</p>
+<p>由于用户为交易池提供流动性，实际拥有 <script type="math/tex">(X'_{A}|Y'_{B})</script> 代币的价值为：</p>
+<p>
+<script type="math/tex; mode=display">V_2=X'_A*P_2+Y'_B \tag{1.4.2}</script>
+</p>
+<p>考虑到：</p>
+<p>
+<script type="math/tex; mode=display">\left\{ \begin{matrix} \begin{aligned}
+X_A * Y_B &= X'_A * Y'_B \\
+P_1 &= Y_B / X_A \\
+P_2 &= Y'_B / X'_A \\
+\end{aligned} \end{matrix} \right. \tag{1.4.3}</script>
+</p>
+<p>则有 <script type="math/tex">^{[6]}</script>：</p>
+<p>
+<script type="math/tex; mode=display">\begin{aligned} \frac{V_2}{V_1} &= \frac{\ 2\sqrt{P_1*P_2}\ }{P_1+P_2} \\[3mm]
+&= \sqrt{\frac{4P_{1}P_{2}}{( P_{1} - P_{2} )^{2} + 4P_{1}P_{2}}} \leq 1 \end{aligned} \tag{1.4.4}</script>
+</p>
+<p>可见只要 <script type="math/tex">P_1 \neq P_2</script>，<script type="math/tex">V_2</script> 就总是小于 <script type="math/tex">V_1</script>，即用户以 <script type="math/tex">Token B</script> 计价的总资产价值相对于简单持有两种代币，一定是减少的。同理用户以 <script type="math/tex">Token A</script> 计价的总资产价值相对于简单持有两种代币也一定是减少的，所以所谓的无常损失（Impermanent Loss）实际上是一定会发生的永久损失（Permanent Loss），只是该损失金额会随着价格的变动而变动。</p>
+<h2 id="2-freeswap">2. FreeSwap 交易协议</h2>
+<h3 id="21-freetswap">2.1 FreetSwap 交易协议目标</h3>
+<p>FreeSwap 交易协议目标实现一个完全没有交易手续费的去中心化交易所。&rdquo;恒定资产乘积&rdquo; 交易机制不可避免地产生交易价格滑动，FreeSwap 协议通过从滑动价格中自动套利，为流动性提供者提供收益来源。</p>
+<h3 id="22-freeswap">2.2 FreeSwap 交易对设置</h3>
+<p>FreeSwap 交易协议为代币交易对 <script type="math/tex">(Token_A|Token_B)</script> 设置两个独立的单向子交易池，表示为：</p>
+<p>
+<script type="math/tex; mode=display">( N_{AA} | N_B)\ || \ (N_A | N_{BB} ) \tag{2.2.1} </script>
+</p>
+<p>其中, 子交易对 <script type="math/tex">(N_{AA}|N_B )</script> ( 简称 <script type="math/tex">A</script> 子交易对 、<script type="math/tex">A</script> 池 ) 可以单向兑入 <script type="math/tex">Token A</script> 、兑出 <script type="math/tex">Token B</script>，<script type="math/tex">N_{AA}</script> 为 <script type="math/tex">A</script> 池内 <script type="math/tex">Token A</script> 的数量，<script type="math/tex">N_B</script> 为 <script type="math/tex">A</script> 池内 <script type="math/tex">Token B</script> 的数量。</p>
+<p>子交易对 <script type="math/tex">(N_A|N_{BB} )</script> ( 简称 <script type="math/tex">B</script> 子交易对 、<script type="math/tex">B</script> 池 ) 可以单向兑入 <script type="math/tex">Token B</script> 、兑出 <script type="math/tex">Token A</script>，<script type="math/tex">N_{BB}</script> 为 <script type="math/tex">B</script> 池内 <script type="math/tex">Token B</script> 的数量，<script type="math/tex">N_A</script> 为 <script type="math/tex">B</script> 池内 <script type="math/tex">Token A</script> 的数量。</p>
+<p>流动性提供者向交易池注入资金时，可以指定所要注入的子交易池，也可以设定一定的比例，将资金同时注入两个子交易池。</p>
+<h3 id="23-freetswap">2.3 FreetSwap 兑换交易</h3>
+<p>用户跟交易池进行 <script type="math/tex">Token A</script> 与 <script type="math/tex">Token B</script> 的兑换交易时，会有2种相反的交易操作，一是兑入 <script type="math/tex">Token A</script> ，兑出 <script type="math/tex">Token B</script> ；一是兑入 <script type="math/tex">Token B</script> ，兑出 <script type="math/tex">Token A</script> 。这里 “兑入” 和 “兑出” 是相对交易池而言的。</p>
+<p>如果用户兑入 <script type="math/tex">Token A</script> 、兑出 <script type="math/tex">Token B</script> ，FreeSwap 会将该交易交给 <script type="math/tex">A</script> 池, 即 <script type="math/tex">(N_{AA}|N_B )</script> 子交易对完成。<script type="math/tex">A</script> 池总是兑入 <script type="math/tex">Token A</script> ，兑出 <script type="math/tex">Token B</script> ，所以 <script type="math/tex">N_{AA}</script> 的数量一直会上升，<script type="math/tex">N_B</script> 的数量一直会下降，这会导致 <script type="math/tex">A</script> 池内以 <script type="math/tex">Token B</script> 计价的 <script type="math/tex">Token A</script> 的价格会单调下降，导致 <script type="math/tex">Token A</script> 的价格偏离实际市场价格，这种价格偏离可以为 FreeSwap 交易对提供套利空间。</p>
+<p>同样，如果用户兑入 <script type="math/tex">Token B</script> ，兑出 <script type="math/tex">Token A</script> ，会由 <script type="math/tex">B</script> 池来完成交易。<script type="math/tex">B</script> 池总是兑入 <script type="math/tex">Token B</script> ，兑出 <script type="math/tex">Token A</script> ，所以 <script type="math/tex">N_{BB}</script> 的数量会一直上升，<script type="math/tex">N_A</script> 的数量会一直下降，这同样会导致 <script type="math/tex">B</script> 池内以 <script type="math/tex">Token A</script> 计价的 <script type="math/tex">Token B</script> 的价格单调下降，最终偏离实际市场价格。</p>
+<p>子交易对 <script type="math/tex">(N_{AA} | N_B )</script>，<script type="math/tex">(N_A | N_{BB} )</script> 是两个单向的方向相反的交易对，它们总是固定兑入一种代币，兑出另一种代币。随着交易的发生，两种代币的价格在两个子交易对内总是以相反的方向滑动，积累一定交易量后，同一代币在两个子交易对内的价差就会超过一定的幅度。价差过大会阻止用户继续参与兑换交易，这时需要在两个子交易对内进行两种资产的资金调配，让代币的兑换价差得到恢复。在两个子交易对内进行资金调配的过程实际上是一个交易套利过程。交易用户在两个单向交易池内进行代币交易，造成代币价格单向滑动，用户会因此蒙受价格滑动造成的交易损失。通过两个子交易池相互进行资产调配，既可以对价格滑动进行修复，又可以实现对用户交易滑动损失的套利，为交易池流动性提供者带来套利收益。</p>
+<h3 id="24-freeswap">2.4 FreeSwap 交易池套利</h3>
+<p>如上所述，FreeSwap 设置两个独立的子交易对：</p>
+<p>
+<script type="math/tex; mode=display">( N_{AA} | N_B )\ || \ ( N_A | N_{BB} ) \tag{2.4.1}</script>
+</p>
+<p>
+<script type="math/tex">Token A</script> 、<script type="math/tex">Token B</script> 在两个子交易对内的价格随着交易发生会产生偏离，当价格偏离较大时，需要对两个子交易对进行资产调配，恢复资产价格。两个子交易对之间的资产调配既可以恢复双方的资产价格，也可以实现相互之间的套利，下面进行分析。</p>
+<p>套利前，<script type="math/tex">Token A</script> 在两个交易对内的价格为：</p>
+<p>
+<script type="math/tex; mode=display">P_{AA \rightarrow B} = \frac{N_B}{N_{AA}} \tag{2.4.2}</script>
+</p>
+<p>
+<script type="math/tex; mode=display">P_{A \rightarrow {BB}} = \frac{N_{BB}}{N_A} \tag{2.4.3}</script>
+</p>
+<p>其偏离比例为：</p>
+<p>
+<script type="math/tex; mode=display">R_{PA} = \frac{P_{A \rightarrow BB}}{P_{AA \rightarrow B}} = \frac{N_{AA} * N_{BB}}{N_B \ * \ N_A} \tag{2.4.4}</script>
+</p>
+<p>同理，<script type="math/tex">Token B</script> 在两个交易对内的价格为：</p>
+<p>
+<script type="math/tex; mode=display">P_{BB \rightarrow A} = \frac{N_A}{N_{BB}} \tag{2.4.5}</script>
+</p>
+<p>
+<script type="math/tex; mode=display">P_{B \rightarrow {AA}} = \frac{N_{AA}}{N_B} \tag{2.4.6}</script>
+</p>
+<p>其价格偏离比例为：</p>
+<p>
+<script type="math/tex; mode=display">R_{PB} = \frac{P_{B \rightarrow AA}}{P_{BB \rightarrow A}} = \frac{N_{AA} * N_{BB}}{N_B * N_A} \tag{2.4.7}</script>
+</p>
+<p>可见，两个子交易对内 <script type="math/tex">Token A</script>，<script type="math/tex">Token B</script> 的价格比相同，即：</p>
+<p>
+<script type="math/tex; mode=display">R_{PA} = R_{PB} = R_P = \frac{N_{AA} * N_{BB}}{N_B * N_A} \tag{2.4.8}</script>
+</p>
+<p>FreeSwap 协议设定当两个子交易对的资产价格偏离，即 <script type="math/tex">R_{P}</script> 的值大于一定门限值 <script type="math/tex">\gamma</script>，如101% 时 ，自动启动内部套利机制，恢复价格。</p>
+<p>套利操作就是利用一个子交易对内数量较多的资产，等价值兑换另一个子交易对内数量较多的另一个资产，即 <script type="math/tex">( N_{AA} | N_B )</script> 子交易对利用 <script type="math/tex">Token A</script> 换取 <script type="math/tex">( N_A | N_{BB} )</script> 子交易对等价值的 <script type="math/tex">Token B</script> 。换个角度看，等价于 <script type="math/tex">( N_A | N_{BB} )</script> 子交易对利用 <script type="math/tex">Token B</script> 换取 <script type="math/tex">( N_{AA} | N_B )</script> 子交易对等价值的<script type="math/tex">Token A</script> 。</p>
+<p>为保证兑换公平，兑换价格定为两个子交易对所有资产的平均价格，即：</p>
+<p>
+<script type="math/tex; mode=display">P_{A \rightarrow B}^e = \frac{N_B + N_{BB}}{N_A + N_{AA}} \tag{2.4.9}</script>
+</p>
+<p>
+<script type="math/tex; mode=display">P_{B \rightarrow A}^e = \ \frac{N_A + N_{AA}}{N_B + N_{BB}} \tag{2.4.10}</script>
+</p>
+<p>
+<script type="math/tex; mode=display">P_{A \rightarrow B}^e * P_{B \rightarrow A}^e = \ 1 \tag{2.4.11}</script>
+</p>
+<p>套利操作完成后，两个子交易对可以表示为：</p>
+<p>
+<script type="math/tex; mode=display">(N_{AA} - L_A \ | \ N_B + L_B  )\ ||\ ( N_A + L_A \ | \ N_{BB} - L_B ) \tag{2.4.12}</script>
+</p>
+<p>即在交易对套利操作中，<script type="math/tex">A</script> 池利用数量为 <script type="math/tex">L_A</script> 的 <script type="math/tex">Token A</script> 换取数量为 <script type="math/tex">L_B</script> 的 <script type="math/tex">Token B</script> ，考虑交换价值相等，则存在下列关系：</p>
+<p>
+<script type="math/tex; mode=display">L_{B} = L_{A}*P_{A \rightarrow B}^e \tag{2.4.13}</script>
+</p>
+<p>套利操作完成后，<script type="math/tex">A</script> 池的 <script type="math/tex">Token A</script> 价格（以 <script type="math/tex">Token B</script> 计价）将会上涨，但基于合理性考虑，不应该超过整体交易对的平均价格 <script type="math/tex">P_{A \rightarrow B}^e</script> ，同样 <script type="math/tex">B</script> 池的 <script type="math/tex">Token B</script> 价格（以 <script type="math/tex">Token A</script> 计价）也会上涨，但也不应该超过整体交易对的平均价 <script type="math/tex">P_{B \rightarrow A}^e</script> ，即存在下列关系：</p>
+<p>
+<script type="math/tex; mode=display">\frac{N_B + L_B}{N_{AA} - L_A} \leq P_{A \rightarrow B}^e \tag{2.4.14} </script>
+</p>
+<p>
+<script type="math/tex; mode=display">\frac{N_A \ + \ L_A}{N_{BB} \ - \ L_B} \normalsize \leq P_{B \rightarrow A}^e \tag{2.4.15}</script>
+</p>
+<p>结合关系式 <script type="math/tex">(2.4.13)-(2.4.15)</script>, 可得出下列关系: </p>
+<p>
+<script type="math/tex; mode=display">L_A \leq \frac{N_{AA}*N_{BB} - N_A*N_B}{2*(N_B + N_{BB})}  \tag{2.4.17} </script>
+</p>
+<p>
+<script type="math/tex; mode=display">L_B \leq \frac{N_{AA}*N_{BB} - N_A*N_B}{2*(N_A + N_{AA})}  \tag{2.4.18} </script>
+</p>
+<p>为减少套利操作频次，子资金池之间的套利操作应当尽量多地交换两种资产以最大幅度地恢复资产价格偏离，不难发现，当 <script type="math/tex">L_A</script>, <script type="math/tex">L_B</script> 取值上述关系式中的最大值时，两个子交易对的资产价格恰好同时恢复到这个交易池的资产平均价格 <script type="math/tex">P_{A \rightarrow B}^e</script>，这也是双方交换资产的价格。</p>
+<p>总体而言，FreeSwap 套利操作可以表示如下：</p>
+<p>
+<script type="math/tex; mode=display">\left\{ \begin{aligned} 
+\ \ &\frac{N_{AA} * N_{BB}}{N_A * N_B} \ \geq \ \gamma \\[3mm]
+P_{A \rightarrow B}^e \ = \ \ &\frac{N_B + N_{BB}}{N_A + N_{AA}} \\[3mm]
+L_A^e \ = \ \ &\frac{N_{AA}*N_{BB} - N_A*N_B}{2*(N_B + N_{BB})}  \\[3mm]
+L_B^e \ = \ \ &\frac{N_{AA}*N_{BB} - N_A*N_B}{2*(N_A + N_{AA})}  \\[3mm]
+\end{aligned} \right. \tag{2.4.19} </script>
+</p>
+<p>其中, <script type="math/tex">\gamma</script> 是触发套利操作的条件，<script type="math/tex">\gamma</script> 表示当两个子交易池的价格偏离大于等于 <script type="math/tex">\gamma-1</script> 时触发套利操作。<script type="math/tex">L_A^e</script>、<script type="math/tex">L_B^e</script> 是套利操作时两个子资金池相互交换资产的数量，套利操作按照 <script type="math/tex">P_{A \rightarrow B}^e</script> 的价格相互交换 <script type="math/tex">L_A^e</script>、<script type="math/tex">L_B^e</script>数量的 <script type="math/tex">TokenA</script>，<script type="math/tex">Token B</script>，套利操作完成后，两个子资金池的资产价格完全相同，均为 <script type="math/tex">P_{A \rightarrow B}^e</script>。</p>
+<h2 id="3-freeswap">3 FreeSwap 套利分析</h2>
+<h3 id="31-freeswap">3.1 FreeSwap 套利分析</h3>
+<p>从 <script type="math/tex">A</script> 池、<script type="math/tex">B</script> 池的流动性资金提供者的角度看，子交易对的资金调配，也即套利操作需要做如下考虑：</p>
+<p>1）A池、B池必须都在套利操作中取得正向收益。一方收益、一方受损则有失公平，套利机制无法成立；</p>
+<p>2）A池、B池从各自的角度考虑，都希望自己在套利操作中收益最大化。套利机制的理想目标是同时实现两个交易池双方的收益最大化。</p>
+<p>3）A池、B池的套利收益需要合理平衡。一方收益大，另一方收益小，则套利机制也存在缺陷；</p>
+<p>FreeSwap 交易协议的套利机制能够满足上述3点要求，即可以同时实现交易池双方的最大正向收益，并且双方受益相等。</p>
+<p>套利操作的收益大小，可以通过套利操作前后，子交易对的 “恒定资产乘积” 的变化来衡量。下面对套利操作完成后，两个子交易对的 <script type="math/tex">K</script> 值变化进行分析。</p>
+<p>对于 <script type="math/tex">A</script> 子交易对，套利后的K值变化为：</p>
+<p>
+<script type="math/tex; mode=display">\begin{aligned}
+{{\Delta}K}_A &= ( N_{AA} - L_A ) * ( N_B + L_B ) - N_{AA} * N_B \\[1mm]
+&= N_{AA} * L_B - L_A * N_B - L_A * L_B \\[1mm]
+&= {-P}_{A \rightarrow B}^e * L_A^2 + ( N_{AA} * P_{A \rightarrow B}^e - N_B ) * L_A \\[1mm]
+&= {-P}_{A \rightarrow B}^e * \left( L_A - \frac{N_{AA} - N_B * P_{B \rightarrow A}^e}{2} \right)^2 + \frac{( N_{AA} - N_B * P_{B \rightarrow A}^e )^2}{4*P_{B \rightarrow A}^e}
+\end{aligned} \tag{3.1.1} </script>
+</p>
+<p>可见对于 <script type="math/tex">A</script> 池，当 <script type="math/tex">L_A = L_A^M</script> 时，<script type="math/tex">K</script> 值增加最大，即 <script type="math/tex">A</script> 池获得最大套利收益：</p>
+<p>
+<script type="math/tex; mode=display">\begin{aligned}
+L_A^M &= \frac{N_{AA} - N_B * P_{B \rightarrow A}^e}{2} \\[3mm]
+&= \frac{N_{AA}*N_{BB} - N_A*N_B}{2*(N_B + N_{BB})} \\
+\end{aligned} \tag{3.1.2} </script>
+</p>
+<p>不难发现，关系式 <script type="math/tex">(2.4.19)</script> 中的 <script type="math/tex">L_A^e</script> 与 <script type="math/tex">L_A^M</script> 相等，即 FreeSwap 的套利机制可以实现 <script type="math/tex">A</script> 池的最大 <script type="math/tex">K</script> 值增加: </p>
+<p>
+<script type="math/tex; mode=display">\begin{aligned}
+{{\Delta}K}_A^M &= \frac{( N_{AA} - N_B * P_{B \rightarrow A}^e )^2}{4*P_{B \rightarrow A}^e} \\[3mm]
+&= \frac{(N_{AA}*N_{BB} - N_A *N_B)^2}{4*(N_A+N_{AA})*(N_B+N_{BB})}
+\end{aligned} \tag{3.1.3} </script>
+</p>
+<p>类似地，对于 <script type="math/tex">B</script> 子交易对，套利后的K值变化为：</p>
+<p>
+<script type="math/tex; mode=display">\begin{aligned}
+{{\Delta}K}_B &= (N_{BB} - L_B) * (N_A + L_A) - N_{BB} * N_A \\[1mm]
+&= N_{BB} * L_A - L_B * N_A - L_A * L_B \\[1mm]
+&= {-P}_{B \rightarrow A}^e * L_B^2 + ( N_{BB} * P_{B \rightarrow A}^e - N_A ) * L_B \\[1mm]
+&= {-P}_{B \rightarrow A}^e * \left( L_B - \frac{N_{BB} - N_A * P_{A \rightarrow B}^e}{2} \right)^2 + \frac{( N_{BB} - N_A * P_{A \rightarrow B}^e )^2}{4*P_{A \rightarrow B}^e} \end{aligned} \tag{3.1.4}</script>
+</p>
+<p>同样对于 <script type="math/tex">B</script> 池，当 <script type="math/tex">L_B = L_B^M</script> 时，<script type="math/tex">K</script> 值有最大增加值，即 <script type="math/tex">B</script> 池获得最大套利收益：</p>
+<p>
+<script type="math/tex; mode=display">\begin{aligned}
+L_B^M &= \frac{N_{BB} - N_A * P_{A \rightarrow B}^e}{2} \\[3mm]
+&= \frac{N_{AA}*N_{BB} - N_A*N_B}{2*(N_A + N_{AA})} \\
+\end{aligned} \tag{3.1.5} </script>
+</p>
+<p>同样，关系式 <script type="math/tex">(2.4.19)</script> 中的 <script type="math/tex">L_B^e</script> 与 <script type="math/tex">L_B^M</script> 相等，即 FreeSwap 的套利机制可以实现 <script type="math/tex">B</script> 池的最大 <script type="math/tex">K</script> 值增加: </p>
+<p>
+<script type="math/tex; mode=display">\begin{aligned}
+{{\Delta}K}_B^M &= \frac{( N_{BB} - N_A * P_{A \rightarrow B}^e)^2}{4*P_{A \rightarrow B}^e} \\[3mm]
+&= \frac{(N_{AA}*N_{BB} - N_A *N_B)^2}{4*(N_A+N_{AA})*(N_B+N_{BB})}
+\end{aligned} \tag{3.1.6} </script>
+</p>
+<p>比较 <script type="math/tex">(3.1.3)</script> 、<script type="math/tex">(3.1.6)</script> 以及 <script type="math/tex">(2.4.19)</script>，可以发现：</p>
+<p>
+<script type="math/tex; mode=display">\Delta K_B^M \equiv \Delta K_A^M \equiv L_A^e*L_B^e \tag{3.1.7}</script>
+</p>
+<p>这意味着，FreeSwap 套利协议能够同时实现 <script type="math/tex">A</script> 池、<script type="math/tex">B</script> 池套利前后 <script type="math/tex">K</script> 值增量最大化, 而且 <script type="math/tex">A</script> 池、<script type="math/tex">B</script> 池的 <script type="math/tex">K</script> 值增量是完全相同的, 其值等于子资金池之间相互套利资产数量的乘积。</p>
+<h3 id="32-freeswap">3.2 FreeSwap 套利收益率分析</h3>
+<p>为简化计算，这里假设 FreeSwap 交易及套利过程如下：</p>
+<p>1）<script type="math/tex">A</script> 池、<script type="math/tex">B</script> 池初始具有相同数量的两种代币，其数量分别用 <script type="math/tex">X</script>, <script type="math/tex">Y</script>表示；</p>
+<p>2）用户在 <script type="math/tex">A</script> 池内用数量为 <script type="math/tex">x</script> 的 <script type="math/tex">Token A</script> , 兑换数量为 <script type="math/tex">y</script> 的 <script type="math/tex">TokenB</script> , 导致 <script type="math/tex">A</script> 池资产价格滑动，滑动幅度为 <script type="math/tex">\gamma</script> , 触发 <script type="math/tex">A</script> 池、<script type="math/tex">B</script> 池发生套利操作；</p>
+<p>3）套利完成后，<script type="math/tex">A</script> 池、<script type="math/tex">B</script> 池的代币数量变为 <script type="math/tex">(X+x'_1\ ,\ Y-y'_1)</script> 及 <script type="math/tex">(X+x'_2\ ,\ Y-y'_2)</script>；</p>
+<p>交易及套利过程的 <script type="math/tex">Token</script> 数量变化，如下表所示：</p>
+<p>
+<script type="math/tex; mode=display">\begin{array}{lccc||c}
+  子交易池：&  &  & A\ 池            & B\ 池 \\
+  \hline
+  代币状态：&  &  & (N_{AA}\ ,\ N_B) & (N_A\ ,\ N_{BB}) \\
+  \hline
+  初始转态：&  &  & (X\ ,\ Y) & (X\ ,\ Y) \\
+  \hline
+  兑换交易：&  &  & (X + x\ ,\ Y - y)  & (X\ ,\ Y) \\
+  \hline
+  完成套利：&  &  & (X + x'_1\ ,\ Y - y'_1) & (X +  x'_2\ ,\ Y - y'_2) \\
+  \hline
+ \end{array}</script>
+</p>
+<p>根据 &ldquo;恒定资产乘积&rdquo; 公式，有：
+<script type="math/tex; mode=display"> (X+x)*(Y-y) = X*Y </script>
+</p>
+<p>
+<script type="math/tex; mode=display"> y = \frac{x}{X+x} * Y \tag{3.2.1} </script>
+</p>
+<p>根据 <script type="math/tex">(2.4.19)</script> 中的套利触发条件，有：
+<script type="math/tex; mode=display"> (X+x)*Y = \gamma * X* (Y-y) </script>
+</p>
+<p>
+<script type="math/tex; mode=display"> x = (\sqrt{\gamma} -1 )* X \tag{3.2.2} </script>
+</p>
+<p>根据 <script type="math/tex">(3.1.3)</script> 和 <script type="math/tex">(3.1.6)</script>，子交易池套利后的最大 <script type="math/tex">K</script> 值增加为：</p>
+<p>
+<script type="math/tex; mode=display">\begin{aligned}
+\Delta K_A^M = \Delta K_B^M &= \frac{((X+x)*Y-X*(Y-y))^2}{4*(X+(X+x))*((Y-y)+Y)} \\[3mm]
+&= \frac{(x*Y+y*X)^2}{4*(2X+x)*(2Y-y)} \\[3mm]
+&= \frac{(\sqrt{\gamma}-1)^2}{4\sqrt{\gamma}}*X*Y 
+\end{aligned} \tag{3.2.3} </script>
+</p>
+<p>套利后，<script type="math/tex">A</script> 池、<script type="math/tex">B</script> 池的 <script type="math/tex">K</script> 值增加比例为：
+<script type="math/tex; mode=display">\delta K_A = \delta K_B = \frac{(\sqrt{\gamma}-1)^2}{4\sqrt{\gamma}} \tag{3.2.4} </script>
+</p>
+<p>根据 <script type="math/tex">(2.4.19)</script>，可以计算得出套利操作在子资金池之间相互交换的代币金额如下：</p>
+<p>
+<script type="math/tex; mode=display"> L_A^e \ = \ \frac{\ x \ }{2} \tag{3.2.5}</script>
+</p>
+<p>
+<script type="math/tex; mode=display">L_B^e \ = \ \frac{x}{2(X+x)} * Y = \ \frac{\ y \ }{2} \tag{3.2.6} </script>
+</p>
+<p>可见套利完成后，两个子资金池的代币数量变为：</p>
+<p>
+<script type="math/tex; mode=display"> (X + \frac{\ x\ }{2}\ ,\ Y - \frac{\ y \ }{2} ) \  \ || \ \ (X + \frac{\ x\ }{2}\ ,\ Y - \frac{\ y \ }{2} ) \tag{3.2.7} </script>
+</p>
+<p>即两个子资金池的代币数量相等，达到完全的平衡。</p>
+<p>上述分析，是基于 <script type="math/tex">A</script> 池、<script type="math/tex">B</script> 池的资金量完全相同的假设进行的，下面分析一下，如果 <script type="math/tex">A</script> 池、<script type="math/tex">B</script> 池的资金量不同，按照 FreeSwap 协议套利后， <script type="math/tex">A</script> 池、<script type="math/tex">B</script> 池的 <script type="math/tex">K</script> 值增加比例。</p>
+<p>此时，交易及套利过程的 <script type="math/tex">Token</script> 数量变化，可如下表所示：</p>
+<p>
+<script type="math/tex; mode=display">\begin{array}{lccc||c}
+  子交易池：&  &  & A\ 池            & B\ 池 \\
+  \hline
+  代币状态：&  &  & (N_{AA}\ ,\ N_B) & (N_A\ ,\ N_{BB}) \\
+  \hline
+  初始转态：&  &  & (X_1\ ,\ Y_1) & (X_2\ ,\ Y_2) \\
+  \hline
+  兑换交易：&  &  & (X_1\ +\ x_1\ ,\ Y_1\ -\ y_1)  & (X_2\ ,\ Y_2) \\
+  \hline
+  完成套利：&  &  & (X_1\ +\ x_1'\ ,\ Y_1\ -\ y_1') & (X_2\ + \ x_2'\ ,\ Y_2\ - \ y_2') \\
+  \hline
+ \end{array}</script>
+</p>
+<p>假设 <script type="math/tex">A</script> 池、<script type="math/tex">B</script> 池的资金比例用 <script type="math/tex">\beta</script> 表示 , 则存在下面关系：</p>
+<p>
+<script type="math/tex; mode=display">\left\{ \begin{array}{ccl}
+  &\Large \frac{Y_1}{X_1} \normalsize = \Large \frac{Y_2}{X_2}  &(价格相同)    \\[3mm]
+  &\Large \frac{X_2*Y_2}{X_1*Y_1} \normalsize = \beta    &(资金量比例)  \\[3mm]
+  &(X_1 + x_1) * (Y_1 - y_1) = X_1 * Y_1            &(恒定乘积)  \\[3mm]
+  &(X_1 + x_1) * Y_2 = \gamma * X_2 * (Y_1 -y_1)    &(触发套利)  \tag{3.2.8} \end{array} \right. </script>
+</p>
+<p>略去推导过程，经过计算可得：</p>
+<p>
+<script type="math/tex; mode=display">\Delta K_A^M = \Delta K_B^M = \frac{(\gamma-1)^2}{4\gamma \Large (\normalsize\sqrt{\gamma} + \Large \frac{1}{\sqrt{\beta}})(\frac{1}{\sqrt{\gamma}} \normalsize + \Large \frac{1}{\sqrt{\beta}})} * X_1 * Y_1 
+\tag{3.2.9} </script>
+</p>
+<p>套利后，<script type="math/tex">A</script> 池、<script type="math/tex">B</script> 池的 <script type="math/tex">K</script> 值增加比例为：</p>
+<p>
+<script type="math/tex; mode=display">\delta K_A = \frac{(\gamma-1)^2}{4\gamma \Large (\normalsize\sqrt{\gamma} + \Large \frac{1}{\sqrt{\beta}})(\frac{1}{\sqrt{\gamma}} \normalsize + \Large \frac{1}{\sqrt{\beta}})} \tag{3.2.10} </script>
+</p>
+<p>
+<script type="math/tex; mode=display">\delta K_B = \frac{(\sqrt{\gamma}-1)^2}{\ \ 4\sqrt{\gamma}(\sqrt{\beta\gamma}+1)(\sqrt{\beta}+\sqrt{\gamma}) \ \ \ } \tag{3.2.11} </script>
+</p>
+<p>由 <script type="math/tex">(3.2.10)</script>、<script type="math/tex">(3.2.11)</script> 可见，<script type="math/tex">\delta K_A</script> 随 <script type="math/tex">\beta</script> 单调上升，而 <script type="math/tex">\delta K_B</script> 随 <script type="math/tex">\beta</script> 单调下降，这意味着，在两个子资金池资金量不平衡的情况下，资金池的资金量相对于另一个资金池越大，套利时，<script type="math/tex">K</script> 值增加比例就越小，相反，资金池的资金量相对越小，套利时的 <script type="math/tex">K</script> 值增加比例就越大。所以用户在加入流动性时，选择加入资金量较小的子资金池，会更为有利，这一内在调节机制可以使得 FreeSwap 交易协议的两个子交易池的资金量达到动态平衡。</p>
+<h3 id="33">3.3 等效交易费率</h3>
+<p>如果不是通过交易套利，而是通过收取交易手续费的方式，要取得与 <script type="math/tex">(3.2.4)</script> 相同的 <script type="math/tex">K</script> 值增加比例，交易手续费费率需要如何设置呢？</p>
+<p>为表述方便，该交易费率用 <script type="math/tex">\alpha</script> 表示。由于 FreeSwap 协议设有两个独立的单向交易资金池，考虑等效性，计算 <script type="math/tex">\alpha</script> 时，应当考虑相同资金规模的单一双向交易池，该交易池可表示为：<script type="math/tex">(2X,2Y)</script> 。用户利用与 <script type="math/tex">(3.2.2)</script> 相同的数量为 <script type="math/tex">x</script> 的 <script type="math/tex">Token A</script> 换取一定数量的 <script type="math/tex">Token B</script>，设该数量为 <script type="math/tex">y'</script>，根据 “恒定资产乘积” 公式，有：</p>
+<p>
+<script type="math/tex; mode=display">(2X+(1-\alpha)x) * (2Y-y') = 2X*2Y \tag{3.3.1} </script>
+</p>
+<p>交易完成后，由于收取的交易手续费未参与交易而是直接进入了资金池，导致整体资金池的 <script type="math/tex">K</script> 值增加，该增加值为：</p>
+<p>
+<script type="math/tex; mode=display">\begin{aligned}
+\Delta K &= \alpha x *(2Y-y') \\
+&= ax * \frac{2X*2Y}{2X+(1-\alpha)x}
+\end{aligned} \tag{3.3.2} </script>
+</p>
+<p>相对于兑换交易发生前，整个资金池的 <script type="math/tex">K</script> 值增加比例为：</p>
+<p>
+<script type="math/tex; mode=display">\delta K = \frac{ax}{2X+(1-\alpha)x} \tag{3.3.3}</script>
+</p>
+<p>结合 <script type="math/tex">(3.2.2)</script>、<script type="math/tex">(3.2.4)</script>，令 <script type="math/tex">\delta K = \delta K_A</script> ，有：</p>
+<p>
+<script type="math/tex; mode=display">\alpha = \frac{\sqrt{\gamma}-1}{\sqrt{\gamma}+1} \tag{3.3.4}</script>
+</p>
+<p>计算可得, 当 <script type="math/tex">\gamma</script> = 1.01 时，<script type="math/tex">\alpha ≈</script> 2.488‰ , 即如果两个子交易池的价格偏离达到 1% 时，自动进行套利操作，资金池提供者的收益等价于收取交易用户 2.488‰ 的交易手续费。目前, UniSwap <script type="math/tex">^{[3]}</script> 收取交易用户 3‰ 的交易手续费，FreeSwap 通过交易套利可以实现 UniSwap 大约 83% 的收益。考虑到 FreeSwap 协议能够为用户提供免费交易服务，可以吸引更多的交易用户，提升交易量，通过交易量的提升，在完全免除交易手续费的情况下，实现与 UniSwap 相当，甚至超过 UniSwap 的收益，是完全有可能的。</p>
+<p>由 <script type="math/tex">(3.3.4)</script> 也可导出：</p>
+<p>
+<script type="math/tex; mode=display">\sqrt{\gamma} = \frac{\ 1+\alpha \ }{1-\alpha} \tag{3.3.5}</script>
+</p>
+<p>计算可得, 当 <script type="math/tex">\alpha</script> = 3‰ 时，<script type="math/tex">\gamma ≈</script> 1.0121‰ , 即 FreeSwap 协议如果在两个子交易池的价格偏离达到 1.21% 时进行套利操作，就可以取得与 UniSwap 的 3‰ 交易收费相同的收益。</p>
+<h3 id="34">3.4 不适用交易类型</h3>
+<p>由于 FreeSwap 交易协议依靠交易池价格偏离时的交易套利获得收益，因此 FreeSwap 不适用于两个交易对的代币均为稳定币的交易场景。稳定币的兑换交易需要尽量降低价格偏离，通过积累价格偏离，继而进行套利，不会有利于吸引稳定币的交易用户。</p>
+<p>FreeSwap 交易协议也不适用于通缩型代币的交易对交易。由于套利操作会在两个子资金池之间进行代币互换，而通缩型代币的转账交易会造成代币通缩，不利于套利换入通缩型代币的一方子资金池，而且套利操作也会增加通缩型代币的转账交易次数，加速通缩，违背通缩型代币的设计初衷。</p>
+<h2 id="4-freeswap">4. FreeSwap 协议总结</h2>
+<p>FreeSwap 交易协议以 “恒定资产乘积” 公式为基础，为每对数字资产创建两个单向交易的子资金池。方向相反的单向交易会造成两个子资金池的资金价格发生反向滑动，当价格滑动幅度达到设定数值时，两个子资金池自动进行相互套利操作，通过套利操作，为资金池提供者提供收益，同时恢复两个资金池资产价格的一致性。</p>
+<p>FreeSwap 交易协议的套利机制能够同时实现两个子资金池的收益最大化，既保证了公平，又实现了双赢。计算表明，如果在资金池价差达到1% 时进行套利操作，FreeSwap 的套利交易机制可以在完全不收取交易手续费的情况下下，实现相当于收取 2.488 ‰ 交易手续费的收益。</p>
+<p>FreeSwap 交易协议通过实现完全免费的去中心化交易机制，可以吸引更多的用户离开中心化交易所，以去中心化的方式参与加密资产投资。</p>
+<h2 id="_2">参考文献</h2>
+<p>1、Vitalik Buterin, <strong>Let&rsquo;s run on-chain decentralized exchanges the way we run prediction markets</strong>, Dec. 2016. URL: https://www.reddit.com/r/ethereum/comments/55m04x/lets_run_onchain_decentralized_exchanges_the_way.</p>
+<p>2、 Hayden Adams, <strong>Uniswap Whitepaper</strong>. URL: https://hackmd.io/C-DvwDSfSxuh-Gd4WKE_ig.</p>
+<p>3、 Hayden Adams et al, <strong>Uniswap V2 Core</strong>. URL: https://uniswap.org/whitepaper.pdf.</p>
+<p>4、 Vitalik Buterin, <strong>The x*y=k market maker model</strong>. URL: https://ethresear.ch/t/improving-front-running-resistance-of-x-y-k-market-makers.</p>
+<p>5、Pintail, <strong>Understanding Uniswap Returns</strong>. URL: https://medium.com/@pintail/understanding-uniswap-returns-cc593f3499ef</p>
+<p>6、Pintail, <strong>Uniswap: A Good Deal For Liquidity Providers?</strong>. URL: https://medium.com/@pintail/uniswap-a-good-deal-for-liquidity-providers-104c0b6816f2.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2020-2025 <a href= "mailto:ldru@163.com">ldru@163.com</a></p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
